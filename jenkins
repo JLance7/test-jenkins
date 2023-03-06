@@ -1,1 +1,35 @@
- docker run -dp 8080:8080 -p 50000:50000 --name my-jenkins --restart=on-failure --privileged jenkins/jenkins:latest
+ # linux
+ docker run -dp 8080:8080 -p 50000:50000 --name jenkins \
+  --restart=on-failure --privileged \
+  -v jenkins_home:/var/jenkins_home \
+  squabglob/jenkins-docker
+
+# windows
+docker run -dp 8080:8080 -p 50000:50000 --name jenkins `
+  --restart=on-failure --privileged `
+  -v jenkins_home:/var/jenkins_home `
+ squabglob/jenkins-docker
+
+--------------------
+
+
+ docker run --name jenkins --restart=on-failure --detach \
+  --network jenkins --env DOCKER_HOST=tcp://docker:2376 \
+  --env DOCKER_CERT_PATH=/certs/client --env DOCKER_TLS_VERIFY=1 \
+  --publish 8080:8080 --publish 50000:50000 \
+  --volume jenkins-data:/var/jenkins_home \
+  --volume jenkins-docker-certs:/certs/client:ro \
+  --volume /var/run/docker.sock:/var/run/docker.sock \
+ squabglob/jenkins-docker
+
+
+ docker run --name jenkins --restart=on-failure --detach `
+  --network jenkins --env DOCKER_HOST=tcp://docker:2376 `
+  --env DOCKER_CERT_PATH=/certs/client --env DOCKER_TLS_VERIFY=1 `
+  --publish 8080:8080 --publish 50000:50000 `
+  --volume jenkins-data:/var/jenkins_home `
+  --volume jenkins-docker-certs:/certs/client:ro `
+  --volume /var/run/docker.sock:/var/run/docker.sock `
+ squabglob/jenkins-docker
+
+
