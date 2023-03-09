@@ -13,9 +13,6 @@ pipeline {
         branch "master"
       }
       steps {
-        sh '''
-          cat test.txt
-        '''
         sh 'node --version'
       }
     }
