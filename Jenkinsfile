@@ -5,7 +5,7 @@ pipeline {
   stages {
     stage('build'){
       steps{
-        echo 'hi test 1'
+        echo 'hi test 2'
       }
     }
     stage('cat test.txt'){
